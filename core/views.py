@@ -13,4 +13,4 @@ class SignUpView(generic.CreateView):
 
 
 def index(request):
-    return render(request, "")
+    return render(request, "index.html")
