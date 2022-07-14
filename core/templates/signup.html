@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+{% block 'titulo' %}Sign-up{% endblock %}
+
+{% block 'body' %}
+
+<!-- Colocar a confirmação de usuário autenticado -->
+
+<div class="sign-forms" style="margin-top: 80px;">
+    <p style="font-weight: 700; font-size: 70;">Cadastre-se para mandar uma mensagem</p>
+    <form action="{% url 'signup' %}" method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <span>Nome do usuário</span>
+                    <input class="form-control input-form" pattern="[A-Za-z]" id="user" name="user" type="text" placeholder="Digite o seu nome..." required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span class="bold"><br>E-mail</span>
+                    <input class="form-control input-form" name="email" type="email" placeholder="Digite o seu e-mail...">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span class="bold"><br>Senha</span>
+                    <input class="form-control input-form" name="password" type="password" placeholder="Insira a sua senha..." required>
+                </div>
+                <div class="col">
+                    <span class="bold"><br>Confirme a sua senha</span>
+                    <input class="form-control input-form" name="password" type="password" placeholder="Insira a sua senha novamente..." required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-primary" style="margin-top: 50px" type="submit">Criar minha conta</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+

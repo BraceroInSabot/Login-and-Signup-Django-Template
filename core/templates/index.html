@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+{% block 'titulo' %}Home{% endblock %}
+{% block 'body' %}
+<div class="tip">
+    <p>Clique no botão abaixo e faça o seu login com o seu usuário para ser exibido nesta página!</p>
+    <a style="color: black;" target="_blank" href="{% url 'signup' %}"><button type="button" class="btn btn-light btn-lg">Montar uma mensagem</button></a>
+</div>
+{% endblock %}
