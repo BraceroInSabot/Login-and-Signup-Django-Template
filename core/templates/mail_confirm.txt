@@ -1,0 +1,4 @@
+Hello there! :>)
+You've tried recently create an account on our server! So I need your confirmation:
+It was me! And I want to open an acount on Portoflio Website! -> Just click <a href="{{ link }}">here.
+It wasn't me! What do i do? -> Chill! No problem!

@@ -19,7 +19,11 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
+# Email Verification
+from django_email_verification import urls as email_urls
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("core.urls"))
+    path("", include("core.urls")),
+    path("email-confirmation/<str:token>/", include(email_urls))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

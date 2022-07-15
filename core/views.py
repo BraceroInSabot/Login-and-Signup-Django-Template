@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.messages import constants
 from django.contrib.auth import authenticate, login as log_user
 from django.contrib import messages
+from django.contrib.auth import get_user_model
+from django_email_verification import send_email
 
 # Classes
 from django.views.generic import TemplateView
@@ -34,9 +36,19 @@ def signup(request):
             messages.add_message(request, constants.ERROR, "Esse endereço de e-mail já existe!")
             return redirect('signup')
 
-        create = User.objects.create_user(username=username, email=email, password=password, is_active=True,
+        create = User.objects.create_user(username=username, email=email, password=password, is_active=False,
                                           is_superuser=False, is_staff=False)
         create.save()
+
+        # Email Verification
+
+        user = get_user_model().objects.create(username=username, password=password, email=email)
+        if user.is_active:
+            user.is_active = False
+
+        send_email(user)
+
+        # Done
 
     messages.add_message(request, constants.SUCCESS, "PARABÉNS! Sua conta foi criada! Agora basta somente verificar o seu e-mail!")
     return render(request, "login.html")

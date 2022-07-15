@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     "core",
+
+    "django_email_verification",
 ]
 
 MIDDLEWARE = [
@@ -140,3 +142,24 @@ MESSAGE_TAGS = {
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST_USER = 'portfolio@gmail.com'
+
+
+def verified_callback(user):
+    user.is_active = True
+
+
+EMAIL_VERIFIED_CALLBACK = verified_callback
+EMAIL_FROM_ADDRESS = 'noreply@portfolio.com'
+EMAIL_MAIL_SUBJECT = 'Confirm your email on Portfolio Website, {{ user.username }}'
+EMAIL_MAIL_HTML = 'mail_confirm.html'
+EMAIL_MAIL_PLAIN = 'mail_confirm.txt'
+EMAIL_TOKEN_LIFE = 60 * 60
+EMAIL_PAGE_TEMPLATE = 'confirm_template.html'
+EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000/'
+EMAIL_MULTI_USER = False  # optional (defaults to False)
+
+# For Django Email Backend
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_PASSWORD = 'senha'  # os.environ['password_key'] suggested
+EMAIL_USE_TLS = True
