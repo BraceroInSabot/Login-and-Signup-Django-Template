@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import IndexView
 
-from core.views import signup
+from core.views import signup, login_auth
 
 urlpatterns = [
     # Classes / POO
@@ -9,4 +9,5 @@ urlpatterns = [
 
     # Functions
     path("signup", signup, name="signup"),
+    path("login", login_auth, name="login")
 ]

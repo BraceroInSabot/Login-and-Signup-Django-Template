@@ -5,8 +5,24 @@
 {% endblock %}
 {% block 'titulo' %}Home{% endblock %}
 {% block 'body' %}
+
+
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert {{message.tags}}" role="alert" id="message">
+        {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+{% endif %}
+
+
 <div class="tip">
     <p>Clique no botão abaixo e faça o seu login com o seu usuário para ser exibido nesta página!</p>
     <a style="color: black;" target="_blank" href="{% url 'signup' %}"><button type="button" class="btn btn-light btn-lg">Montar uma mensagem</button></a>
 </div>
+
+
 {% endblock %}
