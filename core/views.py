@@ -1,8 +1,7 @@
 # Functions
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.messages import ERROR, constants
-from django.contrib import messages
+from django.contrib.messages import constants
 from django.contrib.auth import authenticate, login as log_user
 from django.contrib import messages
 
