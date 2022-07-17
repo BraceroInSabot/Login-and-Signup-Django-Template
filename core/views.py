@@ -4,14 +4,17 @@ from django.contrib.auth.models import User
 from django.contrib.messages import constants
 from django.contrib.auth import authenticate, login as log_user
 from django.contrib import messages
-from django.contrib.auth import get_user_model
-from django_email_verification import send_email
+from django.urls import reverse_lazy
 
 # Classes
 from django.views.generic import TemplateView
 
 
 class IndexView(TemplateView):
+    pass
+
+
+class PageView(TemplateView):
     pass
 
 
@@ -36,22 +39,13 @@ def signup(request):
             messages.add_message(request, constants.ERROR, "Esse endereço de e-mail já existe!")
             return redirect('signup')
 
-        create = User.objects.create_user(username=username, email=email, password=password, is_active=False,
+        new_user = User.objects.create_user(username=username, email=email, password=password, is_active=True,
                                           is_superuser=False, is_staff=False)
-        create.save()
 
-        # Email Verification
-
-        user = get_user_model().objects.create(username=username, password=password, email=email)
-        if user.is_active:
-            user.is_active = False
-
-        send_email(user)
-
-        # Done
+        new_user.save()
 
     messages.add_message(request, constants.SUCCESS, "PARABÉNS! Sua conta foi criada! Agora basta somente verificar o seu e-mail!")
-    return render(request, "login.html")
+    return render(request, 'login.html')
 
 
 def login_auth(request):
@@ -61,14 +55,14 @@ def login_auth(request):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            log_user(request, user) # May a import error...
-            messages.add_message(request, constants.SUCCESS, "Sucesso na autenticação!")
-            return redirect('home')
+            if user.is_active:
+                log_user(request, user) # May a import error...
+                messages.add_message(request, constants.SUCCESS, "Sucesso na autenticação!")
+                return redirect('page')
         else:
             messages.add_message(request, constants.ERROR, "Houve um erro na autenticação! Tente novamente.")
             return redirect('login')
 
     else:
         return render(request, 'login.html')
-
 
