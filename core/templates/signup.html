@@ -9,6 +9,7 @@
 
 {% block 'body' %}
 
+
 {% if messages %}
     {% for message in messages %}
         <div class="alert {{message.tags}}" role="alert" id="message">
@@ -58,5 +59,6 @@
         </div>
     </form>
 </div>
+
 {% endblock %}
 

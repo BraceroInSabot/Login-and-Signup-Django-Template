@@ -5,9 +5,14 @@
 {% endblock %}
 
 {% block 'titulo' %}
-    Page
+        Page
 {% endblock %}
 
 {% block 'body' %}
-<h1>Congrats! Just logged users can see this page.</h1>
+{% if user.is_authenticated %}
+    <h1>Congrats! Just logged users can see this page.</h1>
+{% else %}
+    <h1> There's an ERROR. </h1>
+    <h5> Please <a href="{% url 'login' %}">sign in</a>, so you would be able to see this page</h5>
+{% endif %}
 {% endblock %}

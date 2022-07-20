@@ -15,9 +15,15 @@
     margin-left: 50px;
 }
 
-#login-button {
+.login-button {
     display: flex;
     align-items: right;
+}
+
+#welcome-header {
+    color: #FFF;
+    margin-top: 20px;
+    margin-right: 20px;
 }
 
 #message {

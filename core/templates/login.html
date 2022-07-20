@@ -22,15 +22,15 @@
 {% endif %}
 
 <div class="global-container">
-    <h1 id="cadastre">Entre com a sua conta!</h1>
+    <h1 id="cadastre">Login in!</h1>
 
     <form action="{% url 'login' %}" method="POST">
         {% csrf_token %}
         <span class="bold"><br>Username</span>
-        <input class="form-control input-form" name="username" type="text" placeholder="Digite o seu e-mail...">
+        <input class="form-control input-form" name="username" type="text" placeholder="Insert your email...">
 
-        <span class="bold"><br>Senha</span>
-        <input class="form-control input-form" name="password" type="password" placeholder="Insira a sua senha..." required>
+        <span class="bold"><br>Password</span>
+        <input class="form-control input-form" name="password" type="password" placeholder="Insert your password..." required>
 
         <button id="botao" class="btn btn-primary" type="submit">Entrar</button>
     </form>
