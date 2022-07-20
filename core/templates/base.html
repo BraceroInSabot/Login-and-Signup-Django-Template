@@ -17,7 +17,7 @@
         <div class="header">
             <a href="{% url 'home' %}"><h1 class="portlogo">PORTFOLIO</h1></a>
             <div id="login-button">
-                <a href="{% url 'login' %}"><button class="btn btn-primary" type="submit">Entrar</button></a>
+                <a href="{% url 'login' %}"><button class="btn btn-primary" type="submit">Sign</button></a>
             </div>
         </div>
     {% else %}
@@ -26,7 +26,7 @@
                 <a style="text-align: left; color: #fff; font-weight: bold; padding-bottom: 20px;" href="{% url 'home' %}"><h1>PORTFOLIO</h1></a>
             </div>
             <div>
-                <h6 style="color: #FFF; margin-top: 20px; margin-right: 20px;">Bem vindo (a), <a href="{% url 'page' %}">{{ user.username }}!</a></h6>
+                <h6 style="color: #FFF; margin-top: 20px; margin-right: 20px;">Welcome, <a href="{% url 'page' %}">{{ user.username }}!</a></h6>
             </div>
         </div>
     {% endif %}
